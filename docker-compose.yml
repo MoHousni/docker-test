@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysqldb-for-spring:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_docker
+    networks:  
+      - spring-net
+    volumes: 
+      - D:/data:/var/lib/mysql
+    ports:
+      - 3308:3306
+      
+  spring-boot-app:
+    image: spring-boot-mysql
+    networks:
+      - spring-net
+    depends_on: 
+      - mysqldb-for-spring
+    ports:
+      - 8082:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb-for-spring:3306/db_docker
+    
+      
+      
+networks:
+    spring-net:
