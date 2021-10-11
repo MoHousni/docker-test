@@ -3,7 +3,7 @@ pipeline {
   stages{
     stage('SCM checkout'){
       steps{
-        git 'https://github.com/MoHousni/docker-test'
+        git 'https://github.com/MoHousni/docker-test.git'
       }
     }
     stage('build'){
