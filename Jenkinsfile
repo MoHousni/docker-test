@@ -13,6 +13,16 @@ pipeline {
         }
       }
     }
+    stage('Quality Gate Status Check'){
+      steps{
+        timeout(time: 1, unit: 'HOURS'){
+          def qg = WaitForQualityGateStep()
+          if(qg.status != 'OK'){
+            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+          }
+        }
+      }
+    }
     stage('Email-Notification'){
       steps{
         mail bcc: '', body: 'Hello and see you later', cc: '', from: '', replyTo: '', subject: 'email for jenkins test pipeline', to: 'mohamedhousni1996@gmail.com'
