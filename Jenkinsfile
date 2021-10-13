@@ -9,16 +9,16 @@ pipeline {
     stage('SonarQube-analyse'){
       steps{
         withSonarQubeEnv('sonar') {
-          bat 'mvn sonar:sonar -Dsonar.projectKey=pipeline_jenkins -Dsonar.login=906fac9a8e8c4f02a986f73db71507e66d803fb3'
+          bat 'mvn sonar:sonar -Dsonar.projectKey=test-project -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0476497319b3257464ad9bfa4cd2b33d921a852e'
         }
       }
     }
     stage("Quality Gate Statuc Check"){
       steps{
         timeout(time: 1, unit: 'HOURS'){
-          waitForQualityGate abortPipeline: true
+          waitForQualityGate abortPipeline: true, credentialsId: '0476497319b3257464ad9bfa4cd2b33d921a852e'
           script{
-                def qg = waitForQualityGate(credentialsId: '906fac9a8e8c4f02a986f73db71507e66d803fb3') // Waiting for analysis to be completed
+                def qg = waitForQualityGate(credentialsId: '0476497319b3257464ad9bfa4cd2b33d921a852e') // Waiting for analysis to be completed
                 if(qg.status != 'OK'){ // If quality gate was not met, then present error
                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
