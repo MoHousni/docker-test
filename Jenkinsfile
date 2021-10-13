@@ -18,7 +18,7 @@ pipeline {
         timeout(time: 1, unit: 'HOURS'){
           waitForQualityGate abortPipeline: true
           script{
-                def qg = waitForQualityGate(credentialsId: 906fac9a8e8c4f02a986f73db71507e66d803fb3) // Waiting for analysis to be completed
+                def qg = waitForQualityGate(credentialsId: '906fac9a8e8c4f02a986f73db71507e66d803fb3') // Waiting for analysis to be completed
                 if(qg.status != 'OK'){ // If quality gate was not met, then present error
                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
