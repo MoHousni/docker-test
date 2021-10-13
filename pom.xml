@@ -11,8 +11,8 @@
 	<groupId>com.docker</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>CI-CD Test</name>
+	<description>Demo project for Spring Boot And CI CD</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
