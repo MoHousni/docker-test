@@ -9,7 +9,7 @@ pipeline {
     stage('SonarQube-analyse'){
       steps{
         withSonarQubeEnv('sonar') {
-          bat 'mvn sonar:sonar'
+          bat 'mvn sonar:sonar -Dsonar.login=906fac9a8e8c4f02a986f73db71507e66d803fb3'
         }
       }
     }
