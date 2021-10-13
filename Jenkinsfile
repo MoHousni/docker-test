@@ -16,7 +16,6 @@ pipeline {
     stage("Quality Gate Statuc Check"){
       steps{
         timeout(time: 1, unit: 'HOURS'){
-          waitForQualityGate abortPipeline: true, credentialsId: '0476497319b3257464ad9bfa4cd2b33d921a852e'
           script{
                 def qg = waitForQualityGate(credentialsId: '0476497319b3257464ad9bfa4cd2b33d921a852e') // Waiting for analysis to be completed
                 if(qg.status != 'OK'){ // If quality gate was not met, then present error
